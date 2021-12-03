@@ -3,6 +3,7 @@
 import { Parser } from 'htmlparser2';
 import { DomHandler } from 'domhandler';
 import { getElements, getName, textContent } from 'domutils';
+import { getElementsByTagName } from 'domutils';
 import serializeDOM from 'dom-serializer';
 
 /**
@@ -46,13 +47,43 @@ const kickstart = {
 };
 
 import { defineConfig } from 'vite';
-import { getElementsByTagName } from 'domutils';
 
 export default defineConfig({
+  cacheDir: 'node_modules/.vite',
+  publicDir: 'public',
+  // Base public path when served in development or production.
+  base: '/',
+
+  logLevel: 'info',
+
+  server: {
+    port: 3000,
+    // If port is already in use, automatically try the next available port.
+    strictPort: false,
+    fs: {
+      // Restrict serving files outside of workspace root.
+      strict: true,
+    },
+    watch: {
+      // Enable this if you are using the Windows Subsystem for Linux (WSL).
+      // usePolling: true,
+    },
+  },
+
   resolve: {
     alias: {
       '@icons': '/components/app/_sprite-items/icons/',
     },
   },
-  plugins: [kickstart],
+
+  build: {
+    // Specify the output directory.
+    outDir: './build',
+    // Directory to nest generated assets under (relative to build.outDir).
+    assetsDir: 'assets',
+  },
+
+  plugins: [
+    /* kickstart */
+  ],
 });
