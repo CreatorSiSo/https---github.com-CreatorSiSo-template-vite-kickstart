@@ -1,5 +1,5 @@
 # compiled output
-/build
+build
 
 # misc
 .sass-cache
@@ -12,7 +12,7 @@ yarn-error.log*
 
 
 # Dependency directories
-node_modules/
+node_modules
 
 # Optional npm cache directory
 .npm
@@ -26,8 +26,7 @@ node_modules/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variables file
-.env
+# local dotenv environment variables file
 *.local
 
 # System Files
